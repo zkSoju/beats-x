@@ -12,6 +12,7 @@
     "@types/react": "^17.0.39",
     "ethers": "^5.5.4",
     "framer-motion": "^6.2.8",
+    "glslCanvas": "^0.1.7",
     "immer": "^9.0.12",
     "next": "12.1.0",
     "next-seo": "^5.1.0",

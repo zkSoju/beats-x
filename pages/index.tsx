@@ -2,11 +2,13 @@ import Head from "next/head";
 import Main from "../components/layouts/Main";
 import ConnectButton from "../components/UI/ConnectButton";
 import { FaGithub } from "react-icons/fa";
+import ShaderComponent from "../components/UI/ShaderComponent";
 
 export default function Home() {
   return (
     <Main>
-      <div className="flex h-screen w-full items-center justify-center">
+      <ShaderComponent />
+      <div className="relative z-10 flex h-screen w-full items-center justify-center">
         <div className="flex flex-col items-center border border-white/20 bg-black px-4 py-4">
           <p className="mb-4 w-full text-2xl text-white">Wagmi Boilerplate</p>
           <div className="mb-16 flex w-full flex-row items-center justify-start space-x-4">
