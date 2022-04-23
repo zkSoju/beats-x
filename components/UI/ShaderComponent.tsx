@@ -2,11 +2,10 @@ import React, { useEffect, useRef } from "react";
 import { ShaderFragment } from "./ShaderFragment";
 
 const ShaderComponent = () => {
-  let GlslCanvas = require("glslCanvas").default;
-
   const canvasRef = useRef();
 
   useEffect(() => {
+    let GlslCanvas = require("glslCanvas").default;
     const canvas = canvasRef;
 
     var sandbox = new GlslCanvas(canvas.current);

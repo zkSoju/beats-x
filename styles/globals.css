@@ -1,6 +1,6 @@
 html,
 body {
-  background-color: #000000;
+  background-color: #ffffff;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -23,5 +23,5 @@ a {
   backface-visibility: hidden;
   perspective: 1000;
   -webkit-perspective: 1000;
-  height: 100vh;
+  height: 400px;
 }
