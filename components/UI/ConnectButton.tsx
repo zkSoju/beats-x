@@ -3,6 +3,7 @@ import { BsChevronRight } from "react-icons/bs";
 import { useCallback, useEffect, useState } from "react";
 import { SiweMessage } from "siwe";
 import { useAccount, useNetwork, useSignMessage } from "wagmi";
+import * as Dialog from "@radix-ui/react-dialog";
 
 const ConnectButton = () => {
   const [{ data: connectData, error: connectError }, connect] = useConnect();
@@ -81,13 +82,13 @@ const ConnectButton = () => {
             disabled={isMounted ? !x.ready : false}
             key={x.id}
             onClick={() => signIn(x)}
-            className="flex h-20 flex-row items-center justify-between rounded-sm border px-8 py-8 text-black transition duration-300 ease-linear hover:border hover:border-[#FFC061]"
+            className="group flex h-20 flex-row items-center justify-between rounded-sm border px-8 py-8 text-black transition duration-300 ease-linear hover:border hover:border-[#FFC061]"
           >
             <p className="text-left">
               {isMounted ? x.name : x.id === "injected" ? x.id : x.name}
               {isMounted ? !x.ready && " (unsupported)" : ""}
             </p>
-            <div className="absolute right-12 flex h-20 w-8 items-center justify-center rounded-r-sm bg-primary">
+            <div className="absolute right-12 flex h-20 w-8 items-center justify-center rounded-r-sm bg-black/10 transition ease-linear group-hover:bg-primary">
               <BsChevronRight className="text-xs text-black/50" />
             </div>
           </button>

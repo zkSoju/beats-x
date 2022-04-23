@@ -1,6 +1,7 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import ConnectButton from "./ConnectButton";
+import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   return (
@@ -18,7 +19,14 @@ const Navbar = () => {
           </button>
         </Dialog.Trigger>
         <Dialog.Portal>
-          <div className="fixed inset-0 z-[60] bg-black/80" />
+          <div className="fixed inset-0 z-[60] bg-black/80">
+            <div className="flex w-full justify-end py-16 px-16">
+              <Dialog.Close>
+                <IoMdClose className="text-2xl text-white" />
+              </Dialog.Close>
+            </div>
+          </div>
+
           <Dialog.Content asChild>
             <div className="fixed top-1/2 left-1/2 z-[60] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-sm border border-white/10 bg-white p-12 shadow-zen">
               <ConnectButton />
