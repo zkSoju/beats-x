@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { SiweMessage } from "siwe";
 import { useAccount, useNetwork, useSignMessage } from "wagmi";
 import * as Dialog from "@radix-ui/react-dialog";
+import { motion } from "framer-motion";
 
 const ConnectButton = () => {
   const [{ data: connectData, error: connectError }, connect] = useConnect();

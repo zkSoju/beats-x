@@ -1,12 +1,21 @@
 import Head from "next/head";
 import Main from "../components/layouts/Main";
-
+import WaveSurfer from "wavesurfer.js";
 import { FaGithub, FaSpotify } from "react-icons/fa";
 import ShaderComponent from "../components/UI/ShaderComponent";
 import { IoCopySharp } from "react-icons/io5";
 import { BiDotsHorizontal, BiPlay } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+
+const WaveformComponent = dynamic(() => import("../components/UI/Waveform"), {
+  ssr: false,
+});
 
 export default function Home() {
+  const [hover, setHover] = useState<boolean>(false);
+
   return (
     <Main>
       <ShaderComponent />
@@ -24,7 +33,30 @@ export default function Home() {
                 </div>
 
                 <div className="relative flex flex-col items-start justify-center">
-                  <h1 className=" font-syne  text-6xl text-white">Zerker</h1>
+                  <div className="flex flex-row items-center">
+                    <h1 className="mr-4 font-syne  text-6xl text-white">
+                      Zerker
+                    </h1>
+                    <svg
+                      display="block"
+                      width="28"
+                      height="28"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.78117 0.743103C5.29164 -0.247701 6.70826 -0.247701 7.21872 0.743103C7.52545 1.33846 8.21742 1.62509 8.8553 1.42099C9.91685 1.08134 10.9186 2.08304 10.5789 3.1446C10.3748 3.78247 10.6614 4.47445 11.2568 4.78117C12.2476 5.29164 12.2476 6.70826 11.2568 7.21872C10.6614 7.52545 10.3748 8.21742 10.5789 8.8553C10.9186 9.91685 9.91685 10.9186 8.8553 10.5789C8.21742 10.3748 7.52545 10.6614 7.21872 11.2568C6.70826 12.2476 5.29164 12.2476 4.78117 11.2568C4.47445 10.6614 3.78247 10.3748 3.1446 10.5789C2.08304 10.9186 1.08134 9.91685 1.42099 8.8553C1.62509 8.21742 1.33846 7.52545 0.743103 7.21872C-0.247701 6.70826 -0.247701 5.29164 0.743103 4.78117C1.33846 4.47445 1.62509 3.78247 1.42099 3.1446C1.08134 2.08304 2.08304 1.08134 3.1446 1.42099C3.78247 1.62509 4.47445 1.33846 4.78117 0.743103Z"
+                        fill="#FFC061"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8.43961 4.23998C8.64623 4.43922 8.65221 4.76823 8.45297 4.97484L5.40604 8.13462L3.54703 6.20676C3.34779 6.00014 3.35377 5.67113 3.56039 5.47189C3.76701 5.27266 4.09602 5.27864 4.29526 5.48525L5.40604 6.63718L7.70475 4.25334C7.90398 4.04672 8.23299 4.04074 8.43961 4.23998Z"
+                        fill="#000000"
+                      ></path>
+                    </svg>
+                  </div>
                   <p className="mb-12 text-left font-mono text-white/50">
                     Music Producer — Hollywood, CA
                   </p>
@@ -109,7 +141,7 @@ export default function Home() {
               </p>
               <div className="mb-4 flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center justify-center -space-x-2">
-                  <p className="font-mono text-xs text-black/50">Instagram</p>
+                  <img src="images/twitter.svg" className="h-4 w-4" />
                 </div>
                 <p className="rounded-full bg-black/10 py-1 px-2 font-mono text-xs text-black/50">
                   @not_zerker
@@ -117,7 +149,15 @@ export default function Home() {
               </div>
               <div className="mb-4 flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center justify-center -space-x-2">
-                  <p className="font-mono text-xs text-black/50">ENS</p>
+                  <img src="images/ig.svg" className="h-4 w-4" />
+                </div>
+                <p className="rounded-full bg-black/10 py-1 px-2 font-mono text-xs text-black/50">
+                  @zerker
+                </p>
+              </div>
+              <div className="mb-4 flex flex-row items-center justify-between">
+                <div className="flex flex-row items-center justify-center -space-x-2">
+                  <img src="images/ens.svg" className="h-4 w-4" />
                 </div>
                 <p className="rounded-full bg-black/10 py-1 px-2 font-mono text-xs text-black/50">
                   zerker.eth
@@ -125,7 +165,7 @@ export default function Home() {
               </div>
               <div className="mb-4 flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center justify-center -space-x-2">
-                  <p className="font-mono text-xs text-black/50 ">Spotify</p>
+                  <img src="images/spotify.svg" className="h-4 w-4" />
                 </div>
                 <p className="rounded-full bg-black/10 py-1 px-2 font-mono text-xs text-black/50">
                   zerker
@@ -142,39 +182,46 @@ export default function Home() {
               </div>
               <div className="h-px w-full bg-black/10" />
             </div>
-            <div className="relative mb-12 h-36 w-full rounded-sm bg-transparent">
-              <img
-                src="images/smoke.png"
-                className="absolute left-4 bottom-4 z-10 aspect-square w-36 rounded-sm shadow-zen"
-              />
-              <div className="relative z-10 flex h-full w-full flex-row justify-between pl-48 pr-12 pt-8">
-                <div className="mr-64 flex flex-col">
-                  <p className="font-mono text-xs uppercase tracking-widest text-black/50">
-                    Lofi Hip-Hop
-                  </p>
-                  <p className="text-3xl">Fast Lane</p>
-                </div>
-                <div className="flex h-fit items-center justify-center rounded-full border border-black/10 p-4">
-                  <BiPlay className="text-2xl text-black/50" />
-                </div>
-              </div>
-              {/* <div className="absolute bottom-0 h-24 w-full rounded-b-sm bg-primary" /> */}
-            </div>
-            <div className="relative h-36 w-full rounded-sm bg-transparent">
-              <img
-                src="images/music.png"
-                className="absolute left-4 bottom-4  z-10 aspect-square w-36 rounded-sm shadow-zen"
-              />
-              <div className="flex h-full w-full flex-row justify-between pl-48 pr-12 pt-8">
-                <div className="mr-64 flex flex-col">
+            <div className="relative mb-16 h-36 w-full rounded-sm bg-transparent">
+              <motion.div className="absolute bottom-4 left-4 z-10 aspect-square w-36">
+                <img
+                  src="images/music.png"
+                  className={`aspect-square w-36 rounded-sm shadow-zen`}
+                />
+              </motion.div>
+
+              <div className=" flex h-full w-full flex-row items-center rounded-sm border border-black/10 pl-48 pr-12">
+                <div className="mr-8 h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-primary p-4 shadow-zen">
+                  <BiPlay className="text-2xl text-black" />
+                </div>{" "}
+                <div className="mr-32 flex flex-col">
                   <p className="font-mono text-xs uppercase tracking-widest text-black/50">
                     R&B
                   </p>
                   <p className="text-3xl">Lights Off</p>
                 </div>
-                <div className="flex h-fit items-center justify-center rounded-full border border-black/10 p-4">
-                  <BiPlay className="text-2xl text-black/50" />
+                <WaveformComponent key="1" />
+              </div>
+              {/* <div className="absolute bottom-0 h-6 w-full rounded-b-sm bg-black/10" /> */}
+            </div>
+            <div className="relative h-36 w-full rounded-sm bg-transparent">
+              <motion.div className="absolute bottom-4 left-4 z-10 aspect-square w-36">
+                <img
+                  src="images/music.png"
+                  className={`aspect-square w-36 rounded-sm shadow-zen`}
+                />
+              </motion.div>
+              <div className="flex h-full w-full flex-row items-center rounded-sm border border-black/10 pl-48 pr-12">
+                <div className="mr-8 h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-primary p-4 shadow-zen">
+                  <BiPlay className="text-2xl text-black" />
+                </div>{" "}
+                <div className="mr-32 flex flex-col">
+                  <p className="font-mono text-xs uppercase tracking-widest text-black/50">
+                    R&B
+                  </p>
+                  <p className="text-3xl">Lights Off</p>
                 </div>
+                <WaveformComponent key="2" />
               </div>
               {/* <div className="absolute bottom-0 h-6 w-full rounded-b-sm bg-black/10" /> */}
             </div>

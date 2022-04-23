@@ -2,8 +2,28 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import ConnectButton from "./ConnectButton";
 import { IoMdClose } from "react-icons/io";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
+  const popupAnimation = {
+    hidden: {
+      opacity: 0,
+      scale: 0,
+      x: "-50%",
+      y: "-50%",
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: "-50%",
+      y: "-50%",
+      transition: {
+        type: "spring",
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
     <nav className="fixed top-0 z-50 flex w-full flex-row justify-between border-b border-white/20 px-12 py-6">
       <div className="flex flex-row items-center justify-center space-x-8">
@@ -28,9 +48,14 @@ const Navbar = () => {
           </div>
 
           <Dialog.Content asChild>
-            <div className="fixed top-1/2 left-1/2 z-[60] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-sm border border-white/10 bg-white p-12 shadow-zen">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={popupAnimation}
+              className="fixed top-1/2 left-1/2 z-[60] w-[26rem] rounded-sm border border-white/10 bg-white p-12 shadow-zen"
+            >
               <ConnectButton />
-            </div>
+            </motion.div>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
