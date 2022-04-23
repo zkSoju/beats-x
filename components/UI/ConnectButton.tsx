@@ -77,6 +77,12 @@ const ConnectButton = () => {
   return (
     <>
       <div className="flex flex-col space-y-4">
+        <p className="text-2xl">Connect Wallet</p>
+        <p className="pb-8 font-mono text-xs">
+          By connecting your wallet, you agree to our{" "}
+          <span className="underline">Terms of Service</span> and our{" "}
+          <span className="underline">Privacy Policy</span>.
+        </p>
         {connectData.connectors.map((x) => (
           <button
             disabled={isMounted ? !x.ready : false}
