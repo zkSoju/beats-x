@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { ShaderFragment } from "./ShaderFragment";
 
 const ShaderComponent = () => {
-  const canvasRef = useRef();
+  const canvasRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
     let GlslCanvas = require("glslCanvas").default;
@@ -13,7 +13,9 @@ const ShaderComponent = () => {
     sandbox.load(ShaderFragment);
     sandbox.setUniform("u_seed", Math.pow(1, 0.5));
 
-    canvas.current.style.width = "100%";
+    if (canvas.current) {
+      canvas.current.style.width = "100%";
+    }
   }, []);
 
   return <canvas className="shader-canvas" ref={canvasRef} />;
