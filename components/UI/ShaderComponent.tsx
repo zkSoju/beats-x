@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { ShaderFragment } from "./ShaderFragment";
 
 const ShaderComponent = () => {
-  const canvasRef = useRef<HTMLInputElement>();
+  const canvasRef = useRef();
 
   useEffect(() => {
     let GlslCanvas = require("glslCanvas").default;
