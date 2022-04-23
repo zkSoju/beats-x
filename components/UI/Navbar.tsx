@@ -28,9 +28,12 @@ const Navbar = () => {
     <nav className="fixed top-0 z-50 flex w-full flex-row justify-between border-b border-white/20 px-12 py-6">
       <div className="flex flex-row items-center justify-center space-x-8">
         <img src="images/logo.svg" />
-        <p className="font-mono text-xs text-white">Browse</p>
-        <p className="font-mono text-xs text-white">Collections</p>
-        <p className="font-mono text-xs text-white">Top Artists</p>
+        <a className="exampleClass font-mono text-xs text-white">Browse</a>
+        <a className="exampleClass font-mono text-xs tracking-wide text-white">
+          My Profile
+        </a>
+        <a className="exampleClass font-mono text-xs text-white">Collections</a>
+        <a className="exampleClass font-mono text-xs text-white">Top Artists</a>
       </div>
       <Dialog.Root modal={false}>
         <Dialog.Trigger>

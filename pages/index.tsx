@@ -191,7 +191,7 @@ export default function Home() {
               </motion.div>
 
               <div className=" flex h-full w-full flex-row items-center rounded-sm border border-black/10 pl-48 pr-12">
-                <div className="mr-8 h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-primary p-4 shadow-zen">
+                <div className="mr-8 h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-primary p-4">
                   <BiPlay className="text-2xl text-black" />
                 </div>{" "}
                 <div className="mr-32 flex flex-col">
@@ -212,7 +212,7 @@ export default function Home() {
                 />
               </motion.div>
               <div className="flex h-full w-full flex-row items-center rounded-sm border border-black/10 pl-48 pr-12">
-                <div className="mr-8 h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-primary p-4 shadow-zen">
+                <div className="mr-8 h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-primary p-4">
                   <BiPlay className="text-2xl text-black" />
                 </div>{" "}
                 <div className="mr-32 flex flex-col">
